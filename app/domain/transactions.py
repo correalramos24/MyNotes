@@ -2,7 +2,7 @@
 from datetime import datetime as dt
 from pathlib import Path
 
-from .objects import *
+from .definitions import *
 from utils.utils import log
 from persistance.persistance_tx import *
 from persistance.constants import *

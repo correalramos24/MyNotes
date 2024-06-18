@@ -3,7 +3,7 @@ import pickle
 import shutil
 from pathlib import Path
 
-from domain.objects import GenericObject
+from app.domain.definitions import GenericObject
 from utils.utils import *
 from .constants import *
 
