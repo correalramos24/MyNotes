@@ -23,4 +23,7 @@ def setLogging(new_val):
     Logging.verboseMode = new_val
 
 
+def get_logging(): return Logging.verboseMode
+
+
 log = {0: Logging.log_info, 1: Logging.log_warn, 2: Logging.log_crit}

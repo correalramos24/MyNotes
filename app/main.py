@@ -1,6 +1,6 @@
 #!/bin/python3
 
-from utils.utils import *
+from utils.my_logging import *
 from domain.transactions import *
 from frontend.NotesShell import *
 
