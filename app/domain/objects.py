@@ -1,31 +1,37 @@
 
 from dataclasses import dataclass
-from enum import Enum
 from datetime import datetime
 from typing import List
-
-status = Enum('stats', ['todo', 'done', 'noted'])
+from pathlib import Path
 
 @dataclass
 class GenericObject:
     name: str
-    content: str
-    format: str
     create_date: datetime
+    tags: List[str]
     # author: str Not required yet!
 
     def __hash__(self) -> int:
         return abs(hash(self.name))
 
+    def get_file_name(self):
+        return str(hash(self)) + ".pkl"
+
 @dataclass
 class Note(GenericObject):
-    tags: List[str]
+    content: str
+    def __hash__(self) -> int:
+        return super().__hash__()
+
+@dataclass
+class FileNote(GenericObject):
+    file_path : Path
     def __hash__(self) -> int:
         return super().__hash__()
 
 @dataclass
 class Task(GenericObject):
-    curr_status: status
+    curr_status: str
     deadline: datetime
     priority: int
     subtasks : List['Task']

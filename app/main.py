@@ -2,12 +2,15 @@
 
 from utils.utils import *
 from domain.transactions import *
+from frontend.NotesShell import *
 
 
 def main():
-    init_persistance("/home/vcorreal/MyNotes")
-    create_note('MyMeetingNote', "Nan", "plain")
-    list_notes()
+    
+    #create_note('MyMeetingNote', "Nan", "plain")
+    #list_notes()
+    NoteShell().cmdloop()
+
 
 
 
