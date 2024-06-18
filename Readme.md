@@ -9,6 +9,7 @@ A simple but detail-oriented task and notes app.
 
 ## TODO
 
+* Bitacora support (included video)
 * Add support for tasks and subtasks
 * Add support for calendar
 * Add Telegram bot service
