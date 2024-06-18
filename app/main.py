@@ -15,7 +15,7 @@ def main():
 
 
 if __name__ == "__main__":
-    setLogging(True)
+    setLogging(False)
     log[0]("MAIN START\n")
     main()
     log[0]("MAIN END\n")

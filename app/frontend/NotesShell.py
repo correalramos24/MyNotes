@@ -22,20 +22,22 @@ class NoteShell(cmd.Cmd):
         print(args)
 
     def do_create_note_from_file(self, args):
+        'create_note_from_file <file_path>'
         if len(args.split()) != 1:
-            print("create_note_from_file <file_path>")
-            return
-        
-        create_note_from_file(Path(args))    
+            self.do_help('create_note_from_file')
+        else:
+            create_note_from_file(Path(args))    
 
     def do_exit(self, args):
-        print("Finishing")
+        'Finish the CLI'
         return True
 
     def do_enable_verbose(self, args):
+        'Disable verbose'
         setLogging(False)
     
     def do_enable_verbose(self, args):
+        'Enable verbose'
         setLogging(True)
 
 if __name__ == '__main__':
