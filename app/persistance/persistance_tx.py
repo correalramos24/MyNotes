@@ -9,7 +9,6 @@ from .constants import *
 
 bd_base_path = None
 
-
 def init_persistance(bd_abs_path: Path):
     global bd_base_path
     log[0](f"Init persistance module at {bd_abs_path}\n")
@@ -26,7 +25,6 @@ def init_persistance(bd_abs_path: Path):
     log[0](f"Set runtime BD at {bd_base_path}\n")
 
     log[0](f"Init persistance: DONE\n")
-
 
 def store_file(source_path: Path, overwrite=False):
     fname = source_path.name
@@ -51,7 +49,6 @@ def store_object(obj : GenericObject, obj_type: str):
     except Exception as e:
         log[2](str(e)+"\n")
     
-
 def load_object(obj_type: str, obj_hash: str) -> GenericObject:
     try:
         __check_obj_type__(obj_type)
@@ -73,7 +70,6 @@ def list_objects(obj_type) -> list[GenericObject]:
 
     return ret
     
-
 def __check_obj_type__(obj_type):
     if obj_type not in BD_TYPES:
         raise Exception(f"Incorrect {obj_type} type!")
