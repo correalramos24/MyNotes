@@ -3,10 +3,6 @@ from app.domain.transactions import *
 from app.utils.my_logging import *
 
 
-def do_list_notes(arg):
-    list_notes()
-
-
 class NoteShell(cmd.Cmd):
     intro = 'Welcome to the MyNotes CLI. Type help or ? to list commands.\n'
     prompt = '(MyNotes) '
@@ -16,11 +12,17 @@ class NoteShell(cmd.Cmd):
         init_domain()
         return super().preloop()
 
-    def do_list_tasks(self, args):
+    @staticmethod
+    def do_list_tasks(args):
         list_tasks()
-    def do_list_notes(self, args):
+
+    @staticmethod
+    def do_list_notes(args):
         list_notes()
+
     def do_create_note(self, args):
+        if len(args.split()) != 4:
+            self.do_help('create_notes')
         print(args)
 
     def do_create_note_from_file(self, args):
@@ -30,15 +32,18 @@ class NoteShell(cmd.Cmd):
         else:
             create_note_from_file(Path(args))
 
-    def do_exit(self, args):
+    @staticmethod
+    def do_exit(args):
         """Finish the CLI"""
         return True
 
-    def do_enable_verbose(self, args):
+    @staticmethod
+    def do_disable_verbose(args):
         """Disable verbose"""
         setLogging(False)
 
-    def do_enable_verbose(self, args):
+    @staticmethod
+    def do_enable_verbose(args):
         """Enable verbose"""
         setLogging(True)
 

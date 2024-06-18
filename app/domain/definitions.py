@@ -16,6 +16,10 @@ class GenericObject:
     def get_file_name(self):
         return str(hash(self)) + ".pkl"
 
+    def __str__(self):
+        date_str = self.create_date.strftime("%d %B %Y")
+        return f"{self.name} - {date_str} - {self.tags}"
+
 
 @dataclass
 class Note(GenericObject):
