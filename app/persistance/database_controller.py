@@ -1,9 +1,7 @@
 import pickle
 import shutil
-from pathlib import Path
-import inspect
 
-from app.domain.definitions import GenericObject
+from app.domain.definitions import *
 from app.utils.my_logging import log, setLogging
 
 
@@ -13,15 +11,15 @@ class DatabaseController:
     BD_FILES_FOLDER = 'files'
     BD_TYPES = [BD_TASKS_FOLDER, BD_FILES_FOLDER, BD_NOTES_FOLDER]
 
-    def __init__(self, bd_path, logging=False):
-        setLogging(logging)
+    def __init__(self, bd_path, logging=None):
+        if logging is not None: setLogging(logging)
         log[0](f"Init persistence module at {bd_path}\n")
         # Check if folder exists create otherwise:
         if not bd_path.exists():
             log[0](f"BD not found, generating a new one\n")
             bd_path.mkdir()
             for bd_type in self.BD_TYPES:
-                log[0](f"Init {bd_type}")
+                log[0](f"Init {bd_type}\n")
                 Path(bd_path, bd_type).mkdir()
 
         # Save bd base path as an instance member:

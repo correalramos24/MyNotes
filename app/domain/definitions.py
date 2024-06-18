@@ -10,8 +10,6 @@ class GenericObject:
     create_date: datetime
     tags: List[str]
 
-    # author: str Not required yet!
-
     def __hash__(self) -> int:
         return abs(hash(self.name))
 
