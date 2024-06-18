@@ -3,11 +3,12 @@ A simple but detail-oriented task and notes app.
 
 
 ## Capabilities (so far)
-* Store notes, with plain text
+* Store notes, with plain text and from a file
+
 
 ## TODO - ROADMAP
 * Bitacora support (included video)
-* Add git-repo based client-server
+* Add git-repo for persistance
 * Add support for tasks and subtasks
 * Add support for calendar
 * Add Telegram bot service
