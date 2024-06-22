@@ -40,6 +40,7 @@ class FileNote(GenericObject):
 @dataclass
 class Task(GenericObject):
     curr_status: str
+    description: str
     deadline: datetime
     priority: int
     subtasks: List['Task']

@@ -2,17 +2,19 @@ import pickle
 import shutil
 
 from app.domain.definitions import *
+from app.domain.definitions import GenericObject
 from app.utils.my_logging import log, setLogging
 
 
-class DatabaseController:
+class ObjectDatabaseController:
     BD_NOTES_FOLDER = 'notes'
     BD_TASKS_FOLDER = 'tasks'
     BD_FILES_FOLDER = 'files'
     BD_TYPES = [BD_TASKS_FOLDER, BD_FILES_FOLDER, BD_NOTES_FOLDER]
 
-    def __init__(self, bd_path, logging=None):
-        if logging is not None: setLogging(logging)
+    def __init__(self, bd_path, logging=None) -> None:
+        if logging is not None:
+            setLogging(logging)
         log[0](f"Init persistence module at {bd_path}\n")
         # Check if folder exists create otherwise:
         if not bd_path.exists():
@@ -41,7 +43,7 @@ class DatabaseController:
             print("File already exists, aborting store the file")
             return None
 
-    def save_object(self, obj: GenericObject, obj_type: str):
+    def save_object(self, obj: GenericObject, obj_type: str) -> None:
         try:
             self.__check_obj_type(obj_type)
             obj_path = Path(self.bd_base_path, obj_type, obj.get_file_name())
@@ -51,7 +53,7 @@ class DatabaseController:
         except Exception as e:
             log[1](str(e) + "\n")
 
-    def read_object(self, obj_hash: int, obj_type: str):
+    def read_object(self, obj_hash: int, obj_type: str) -> Task | Note | None:
         try:
             self.__check_obj_type(obj_type)
             obj_path = Path(self.bd_base_path, obj_type, str(obj_hash) + ".pkl")
@@ -62,6 +64,12 @@ class DatabaseController:
         except Exception as e:
             log[1](str(e))
             return None
+
+    def read_task(self, task_hash) -> Task | None:
+        return self.read_object(task_hash, self.BD_TASKS_FOLDER)
+
+    def read_note(self, note_hash) -> Note | None:
+        return self.read_object(note_hash, self.BD_TASKS_FOLDER)
 
     def list_objects(self, obj_type) -> list[GenericObject]:
         self.__check_obj_type(obj_type)
@@ -87,3 +95,6 @@ class DatabaseController:
     def __store_object(obj_path, obj):
         with open(obj_path, 'wb') as obj_file:
             pickle.dump(obj, obj_file)
+
+    def delete_object(self, obj_hash: int):
+        pass
