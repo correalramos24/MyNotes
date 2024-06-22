@@ -22,20 +22,21 @@ class NoteShell(cmd.Cmd):
 
     def do_create_note(self, args):
         if len(args.split()) != 4:
-            self.do_help('create_notes')
+            self.do_help('create_note')
+        print(args)
+
+    def do_create_task(self, args):
+        if len(args.split()) != 4:
+            self.do_help('create_task')
         print(args)
 
     def do_create_note_from_file(self, args):
         """create_note_from_file <file_path>"""
 
-        from pycallgraph2 import PyCallGraph
-        from pycallgraph2.output import GraphvizOutput
-
-        with PyCallGraph(output=GraphvizOutput()):
-            if len(args.split()) != 1:
-                self.do_help('create_note_from_file')
-            else:
-                create_note_from_file(Path(args))
+        if len(args.split()) != 1:
+            self.do_help('create_note_from_file')
+        else:
+            create_note_from_file(Path(args))
 
     @staticmethod
     def do_exit(args):
