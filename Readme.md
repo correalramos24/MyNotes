@@ -13,8 +13,8 @@ export PYTHONPATH="path/to/MyNotes/root/folder"
 * Bitacora support (included video)
 * Add git-repo for persistance
 * Add support for tasks and subtasks
-* Add support for calendar
 * Add Telegram bot service
 * Add GUI (with calendar, tasks lists)
+* Add support for calendar
 * Add client-server service
 * Add conectivity to Calendar API (using HTTP)
