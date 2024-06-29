@@ -14,16 +14,13 @@ def init_domain():
     log[0](f"Init domain: DONE\n")
 
 
-def create_tasks(name: str, description: str,
-                 deadline: dt,
+def create_task( name: str, description: str,
+                 deadline: dt | str,
                  init_state: str = "TODO",
-                 priority: int = 0,
-                 tag_list=None,
+                 priority: int = 0, tag_list=None,
                  creation_date: dt = dt.now()
                  ):
     # Create object:
-    if tag_list is None:
-        tag_list = []
     aux = Task(name, creation_date, tag_list, init_state, description, deadline, priority, [])
     log[0](f"Create task object with id {hash(aux)}\n{aux}\n")
     persistence.save_object(aux, persistence.BD_TASKS_FOLDER)
@@ -41,7 +38,7 @@ def create_subtask(super_task_hash: int,
     if super_task_obj is None:
         print("Invalid task hash", super_task_hash, "(super-task)")
 
-    aux_task = Task(name, creation_date, tag_list, init_state, description, deadline, priority, [])
+    aux_task = Task(name, creation_date, [], init_state, description, deadline, priority, [])
     super_task_obj.subtasks.append(aux_task)
     persistence.save_object(super_task_obj, persistence.BD_TASKS_FOLDER)
 

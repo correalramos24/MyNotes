@@ -1,7 +1,7 @@
 import cmd
 from app.domain.transactions import *
 from app.utils.my_logging import *
-
+from .textParser import *
 
 class NoteShell(cmd.Cmd):
     intro = 'Welcome to the MyNotes CLI. Type help or ? to list commands.\n'
@@ -21,14 +21,25 @@ class NoteShell(cmd.Cmd):
         list_notes()
 
     def do_create_note(self, args):
+        log[0](f"create note with args {args}\n")
         if len(args.split()) != 4:
             self.do_help('create_note')
-        print(args)
+            return
 
     def do_create_task(self, args):
-        if len(args.split()) != 4:
+        """
+        create_task name;description;deadline;init_state;priority
+        - It is mandatory to set the name, you can leave empty the others
+        """
+        log[0](f"create note with args {args}\n")
+        arg_list = args.split(';')
+        if len(arg_list) != 5 or arg_list[0] == '':
             self.do_help('create_task')
-        print(args)
+            return
+        try:
+            create_task(*args.split(';'))
+        except Exception as e:
+            print(e)
 
     def do_create_note_from_file(self, args):
         """create_note_from_file <file_path>"""
