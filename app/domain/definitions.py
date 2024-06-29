@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import List
 from pathlib import Path
+import hashlib
 
 
 @dataclass
@@ -11,7 +12,9 @@ class GenericObject:
     tags: List[str]
 
     def __hash__(self) -> int:
-        return abs(hash(self.name))
+        hash_input = self.name.encode('utf-8')
+        hash_value = int(hashlib.md5(hash_input).hexdigest(), 16)
+        return abs(hash_value)
 
     def get_file_name(self):
         return str(hash(self)) + ".pkl"

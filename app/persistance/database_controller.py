@@ -92,7 +92,11 @@ class ObjectDatabaseController:
             return obj
 
     @staticmethod
-    def __store_object(obj_path, obj):
+    def __store_object(obj_path: Path, obj):
+        # Check dups:
+        if obj_path.exists():
+            raise Exception(f"Already exists object with hash {hash(obj)}")
+
         with open(obj_path, 'wb') as obj_file:
             pickle.dump(obj, obj_file)
 

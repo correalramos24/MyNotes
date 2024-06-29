@@ -28,6 +28,13 @@ def create_task( name: str, description: str,
     log[0](f"Create task object with id {hash(aux)}\n{aux}\n")
     persistence.save_object(aux, persistence.BD_TASKS_FOLDER)
 
+def update_task_fields( name: str, description: str,
+                        deadline: dt | str,
+                        init_state: str = "TODO",
+                        priority: int = 0, tag_list=None,
+                        creation_date: dt = dt.now()):
+    pass
+
 
 def create_subtask(super_task_hash: int,
                    name: str, description: str,
