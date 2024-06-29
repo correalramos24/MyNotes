@@ -20,6 +20,9 @@ def create_task( name: str, description: str,
                  priority: int = 0, tag_list=None,
                  creation_date: dt = dt.now()
                  ):
+    if tag_list == None:
+        tag_list = []
+    
     # Create object:
     aux = Task(name, creation_date, tag_list, init_state, description, deadline, priority, [])
     log[0](f"Create task object with id {hash(aux)}\n{aux}\n")

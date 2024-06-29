@@ -46,13 +46,6 @@ class Task(GenericObject):
     subtasks: List['Task']
 
     def __post_init__(self):
-        # Check for empty fields:
-        for attribute, value in self.__dict__.items():
-            try:
-                if attribute == '': 
-                    attribute = None
-            except:
-                pass
         # Check for priority field
         if self.priority is not None and not isinstance(self.priority, int):
             try:
@@ -64,9 +57,6 @@ class Task(GenericObject):
     def __hash__(self) -> int:
         return super().__hash__()
 
-    @staticmethod
-    def check_task_arguments(args) -> bool:
-        pass
 
     def __str__(self):
         ret = f"[{self.curr_status}] {self.name}"
