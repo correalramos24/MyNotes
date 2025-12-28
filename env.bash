@@ -4,11 +4,6 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Enabling environment!"
 
-# Add local submodule packages to PYTHONPATH (py_utils)
-if [[ -d "${PROJECT_ROOT}/py_utils" ]]; then
-    export PYTHONPATH="${PROJECT_ROOT}/py_utils:${PYTHONPATH:-}"
-fi
-
 function ensure_venv ()
 {
     # Create virtualenv if missing and activate it
